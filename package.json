@@ -1,0 +1,12 @@
+{
+  "name": "mis-tool-browser-auto-import",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "auto-import": "node bin/portal_runner.js",
+    "smoke:routes": "node bin/smoke_routes.js"
+  },
+  "dependencies": {
+    "playwright-core": "^1.56.1"
+  }
+}

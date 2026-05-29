@@ -1,0 +1,24 @@
+{
+  "name": "naturesum/mis-tool",
+  "description": "Monthly Income Statement import, preview, and Excel export tool.",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "maennchen/zipstream-php": "^2.4",
+    "phpoffice/phpspreadsheet": "^5.1",
+    "smalot/pdfparser": "^2.12"
+  },
+  "config": {
+    "platform": {
+      "php": "8.2.4"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "MisTool\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  }
+}
