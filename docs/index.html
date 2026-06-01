@@ -1,26 +1,216 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIS Tool</title>
-  <style>
-    :root{color-scheme:dark;--bg:#07111a;--panel:#101b28;--line:#243447;--ink:#f3f7fb;--muted:#9fb0c2;--accent:#58d39b}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,rgba(88,211,155,.18),transparent 30%),linear-gradient(180deg,#07111a,#0d1520);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,sans-serif}
-    header{padding:56px clamp(20px,5vw,72px) 28px}h1{margin:0;font-size:clamp(44px,8vw,108px);line-height:.9;letter-spacing:0}p{max-width:820px;color:var(--muted);font-size:20px;line-height:1.6}
-    .badge{display:inline-flex;border:1px solid rgba(88,211,155,.45);color:var(--accent);border-radius:999px;padding:8px 12px;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.08em}
-    main{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:20px clamp(20px,5vw,72px) 72px}
-    figure{margin:0;border:1px solid var(--line);background:rgba(16,27,40,.78);border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-    img{width:100%;height:auto;display:block}figcaption{padding:14px 16px;color:var(--muted);font-weight:700}
-  </style>
-</head>
-<body>
-  <header><span class="badge">Public-safe project showcase</span><h1>MIS Tool</h1><p>Browser-based MIS dashboard, import workflow, executive reports and integration screens.</p></header>
-  <main><figure><img src="media/miss-dashboard-fullpage.png" alt="MIS Tool screen"><figcaption>miss dashboard fullpage</figcaption></figure>
-<figure><img src="media/final-dashboard.png" alt="MIS Tool screen"><figcaption>final dashboard</figcaption></figure>
-<figure><img src="media/final-mis-preview.png" alt="MIS Tool screen"><figcaption>final mis preview</figcaption></figure>
-<figure><img src="media/final-executive-report.png" alt="MIS Tool screen"><figcaption>final executive report</figcaption></figure>
-<figure><img src="media/integrations-desktop.png" alt="MIS Tool screen"><figcaption>integrations desktop</figcaption></figure>
-<figure><img src="media/api-connect-simplified-desktop.png" alt="MIS Tool screen"><figcaption>api connect simplified desktop</figcaption></figure></main>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MIS Tool | Public Demo</title>
+    <meta name="description" content="Public-safe MIS Tool demo with sample data and static workflow screens.">
+    <link rel="stylesheet" href="./assets/app.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="MIS Tool dashboard">
+        <span class="brand-mark">MIS</span>
+        <span>
+          <strong>MIS Tool</strong>
+          <small>Retail reconciliation suite</small>
+        </span>
+      </a>
+      <nav aria-label="Demo sections">
+        <a class="active" href="#dashboard" data-view="dashboard">Dashboard</a>
+        <a href="#connect" data-view="connect">API Connect</a>
+        <a href="#import" data-view="import">Import Center</a>
+        <a href="#sales" data-view="sales">Sales MIS</a>
+        <a href="#inventory" data-view="inventory">Inventory</a>
+        <a href="#validation" data-view="validation">Validation</a>
+        <a href="#reports" data-view="reports">Reports</a>
+      </nav>
+      <div class="side-card">
+        <span>Demo run</span>
+        <strong>RUN-0427</strong>
+        <small>Fake records only. No production database or credentials are included.</small>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="kicker">Public-safe operational preview</p>
+          <h1>Marketplace MIS command center</h1>
+        </div>
+        <div class="top-actions">
+          <button data-action="sync">Run sync</button>
+          <button class="primary" data-action="export">Export sample MIS</button>
+        </div>
+      </header>
+
+      <section class="hero-grid" id="dashboard" data-panel="dashboard">
+        <article class="hero-card">
+          <div class="status-row">
+            <span class="pulse"></span>
+            <span>All channels connected</span>
+          </div>
+          <h2>Clean sales, stock, returns and settlement data in one monthly MIS flow.</h2>
+          <p>The public demo mirrors the local app workflow with masked columns and sample values for Amazon, Shopify, POS and warehouse imports.</p>
+          <div class="metric-strip">
+            <span><strong>98.4%</strong><small>Matched orders</small></span>
+            <span><strong>14</strong><small>Open exceptions</small></span>
+            <span><strong>3.8m</strong><small>Demo revenue</small></span>
+          </div>
+        </article>
+        <article class="pipeline-card" aria-label="workflow pipeline">
+          <div class="flow-node done">Source APIs</div>
+          <div class="flow-line"></div>
+          <div class="flow-node done">Normalize</div>
+          <div class="flow-line"></div>
+          <div class="flow-node active">Validate</div>
+          <div class="flow-line"></div>
+          <div class="flow-node">MIS Pack</div>
+        </article>
+      </section>
+
+      <section class="cards">
+        <article>
+          <span>Revenue reconciled</span>
+          <strong>₹38,42,900</strong>
+          <small>+12.8% versus previous demo period</small>
+        </article>
+        <article>
+          <span>Stock variance</span>
+          <strong>₹1,28,450</strong>
+          <small>6 SKUs need review</small>
+        </article>
+        <article>
+          <span>Settlement gap</span>
+          <strong>₹72,180</strong>
+          <small>Marketplace fee mapping pending</small>
+        </article>
+        <article>
+          <span>Reports ready</span>
+          <strong>9 / 11</strong>
+          <small>Executive and P&L packs generated</small>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Channel health</p>
+              <h2>Imports and validation queue</h2>
+            </div>
+            <select id="period">
+              <option>April 2026</option>
+              <option>March 2026</option>
+              <option>February 2026</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>Records</th>
+                  <th>Matched</th>
+                  <th>Exceptions</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="sourceRows"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Trend</p>
+              <h2>Profit bridge</h2>
+            </div>
+          </div>
+          <div class="bar-chart" aria-label="sample profit bridge chart">
+            <span style="height: 88%"><em>Sales</em></span>
+            <span style="height: 62%"><em>Fees</em></span>
+            <span style="height: 74%"><em>Stock</em></span>
+            <span style="height: 46%"><em>Returns</em></span>
+            <span style="height: 69%"><em>Net</em></span>
+          </div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <article class="panel" id="connect" data-panel="connect">
+          <p class="kicker">API Connect</p>
+          <h2>Demo integrations</h2>
+          <div class="integration-list" id="integrations"></div>
+        </article>
+
+        <article class="panel wide" id="import" data-panel="import">
+          <p class="kicker">Import Center</p>
+          <h2>Guided upload workflow</h2>
+          <div class="steps">
+            <button class="step active">1. Select source</button>
+            <button class="step">2. Map columns</button>
+            <button class="step">3. Validate rows</button>
+            <button class="step">4. Publish MIS</button>
+          </div>
+          <div class="dropzone">
+            <strong>Drop marketplace CSV</strong>
+            <span>Sample file accepted. Private exports are intentionally not bundled.</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <article class="panel wide" id="sales" data-panel="sales">
+          <p class="kicker">Sales MIS</p>
+          <h2>Sample order reconciliation</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Order</th><th>Channel</th><th>Gross</th><th>Deductions</th><th>Net</th></tr></thead>
+              <tbody id="orderRows"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel" id="inventory" data-panel="inventory">
+          <p class="kicker">Inventory</p>
+          <h2>Stock movement</h2>
+          <ul class="timeline">
+            <li><strong>Opening</strong><span>12,440 units</span></li>
+            <li><strong>Inbound</strong><span>2,180 units</span></li>
+            <li><strong>Sold</strong><span>3,940 units</span></li>
+            <li><strong>Closing</strong><span>10,680 units</span></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <article class="panel" id="validation" data-panel="validation">
+          <p class="kicker">Validation</p>
+          <h2>Open checks</h2>
+          <div class="validation-stack">
+            <span>SKU unmapped <b>4</b></span>
+            <span>Tax mismatch <b>3</b></span>
+            <span>Fee slab review <b>5</b></span>
+            <span>Duplicate payout <b>2</b></span>
+          </div>
+        </article>
+        <article class="panel wide" id="reports" data-panel="reports">
+          <p class="kicker">Reports</p>
+          <h2>Generated MIS pack</h2>
+          <div class="report-grid">
+            <button>Executive summary</button>
+            <button>P&L bridge</button>
+            <button>Channel margin</button>
+            <button>Inventory aging</button>
+            <button>Loss watch</button>
+            <button>Audit trail</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./assets/app.js"></script>
+  </body>
 </html>
