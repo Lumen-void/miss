@@ -232,6 +232,19 @@ table { width: 100%; border-collapse: collapse; min-width: 620px; background: wh
 th, td { padding: 13px 14px; border-bottom: 1px solid #edf1f5; text-align: left; white-space: nowrap; }
 th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; background: #f7f9fc; }
 td strong { display: block; }
+.empty-cell {
+  padding: 28px 18px;
+  color: var(--muted);
+  text-align: center;
+}
+.empty-cell strong {
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.empty-cell span {
+  display: block;
+  white-space: normal;
+}
 .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 900; }
 .badge.ok { color: var(--ok); background: #ecfdf5; }
 .badge.warn { color: var(--warn); background: #fff7ed; }

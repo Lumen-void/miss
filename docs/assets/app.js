@@ -1,44 +1,29 @@
-const sourceRows = [
-  ["Amazon Seller", "18,420", "98.9%", "6", "Ready"],
-  ["Shopify D2C", "4,870", "99.4%", "2", "Ready"],
-  ["Retail POS", "9,214", "97.8%", "5", "Review"],
-  ["Warehouse WMS", "11,902", "96.2%", "7", "Review"]
-];
-
 const integrations = [
-  ["Amazon SP-API", "Connected"],
-  ["Shopify Admin", "Connected"],
-  ["Razorpay Settlements", "Demo"],
-  ["Warehouse CSV", "Manual"]
+  ["Marketplace API", "Linked"],
+  ["Commerce Admin", "Linked"],
+  ["Settlement Provider", "Demo"],
+  ["Warehouse Upload", "Manual"]
 ];
 
-const orderRows = [
-  ["ORD-10492", "Amazon", "₹12,480", "₹1,240", "₹11,240"],
-  ["ORD-10508", "Shopify", "₹8,990", "₹410", "₹8,580"],
-  ["ORD-10544", "POS", "₹15,400", "₹0", "₹15,400"],
-  ["ORD-10577", "Amazon", "₹6,720", "₹680", "₹6,040"],
-  ["ORD-10611", "Shopify", "₹11,260", "₹520", "₹10,740"]
-];
-
-document.querySelector("#sourceRows").innerHTML = sourceRows.map(row => `
+const renderEmptyRow = (target, colspan, label) => {
+  document.querySelector(target).innerHTML = `
   <tr>
-    <td><strong>${row[0]}</strong><span class="muted">Sample connector</span></td>
-    <td>${row[1]}</td>
-    <td>${row[2]}</td>
-    <td>${row[3]}</td>
-    <td><span class="badge ${row[4] === "Ready" ? "ok" : "warn"}">${row[4]}</span></td>
+    <td colspan="${colspan}" class="empty-cell">
+      <strong>No database table rows are published.</strong>
+      <span>${label}</span>
+    </td>
   </tr>
-`).join("");
+  `;
+};
+
+renderEmptyRow("#sourceRows", 5, "The local source, record count, match rate, exception and status data has been cleared from the public deployment.");
+renderEmptyRow("#orderRows", 5, "Order, channel, gross, deduction and net values are intentionally blank in the public deployment.");
 
 document.querySelector("#integrations").innerHTML = integrations.map(item => `
   <div class="integration">
     <strong>${item[0]}</strong>
-    <span class="badge ${item[1] === "Connected" ? "ok" : "warn"}">${item[1]}</span>
+    <span class="badge ${item[1] === "Linked" ? "ok" : "warn"}">${item[1]}</span>
   </div>
-`).join("");
-
-document.querySelector("#orderRows").innerHTML = orderRows.map(row => `
-  <tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>
 `).join("");
 
 const toast = document.querySelector("#toast");
@@ -59,11 +44,16 @@ document.querySelectorAll("[data-action]").forEach(button => {
 });
 
 document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.querySelectorAll("nav a").forEach(item => item.classList.remove("active"));
-    link.classList.add("active");
-  });
+  const route = link.dataset.view;
+  const page = window.location.pathname.split("/").pop().replace(".html", "") || "dashboard";
+  link.classList.toggle("active", route === page || (page === "index" && route === "dashboard"));
 });
+
+const currentPage = window.location.pathname.split("/").pop().replace(".html", "") || "dashboard";
+const target = document.querySelector(`[data-panel="${currentPage}"], #${currentPage}`);
+if (target && currentPage !== "dashboard" && currentPage !== "index") {
+  requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+}
 
 document.querySelectorAll(".step").forEach(step => {
   step.addEventListener("click", () => {
